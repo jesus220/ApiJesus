@@ -78,10 +78,20 @@ WSGI_APPLICATION = 'ApiJesus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'PibeArgentino',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',  # O la dirección de tu servidor PostgreSQL
+        'PORT': 5432,           # Deja en blanco para el valor predeterminado (5432)
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -118,9 +128,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+# Configuración del servidor SMTP de Gmail para enviar correos electronicos
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Servidor SMTP de Gmail
+EMAIL_PORT = 587  # Puerto SMTP de Gmail
+EMAIL_USE_TLS = True  # Utiliza TLS para conexiones seguras con Gmail
+EMAIL_HOST_USER = 'jesus480b@gmail.com'  # Tu dirección de correo electrónico de Gmail
+EMAIL_HOST_PASSWORD = 'jdfzndjlrhjefhle'  # Tu contraseña de Gmail o una contraseña de aplicación si tienes la autenticación de dos factores habilitada
+
+# Configuración adicional (opcional)
+DEFAULT_FROM_EMAIL = 'jesus480b@gmail.com'  # Dirección de correo predeterminada para enviar correos desde
+EMAIL_SUBJECT_PREFIX = 'djangoemail '  # Prefijo para el asunto de los correos electrónicos
+
+LOGIN_REDIRECT_URL="index"

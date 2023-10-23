@@ -15,8 +15,32 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from api import views
+from api.views import *
+from django.contrib import admin
+from django.contrib.auth.views import LoginView, LogoutView
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('',Home.as_view(),name='login'),
+    path('index.html', index.as_view(), name='index'),
+    #path('login.html', login.as_view(), name='login'),
+    path('icons.html', icono.as_view(), name='ico'),
+    path('blank.html', blank.as_view(), name='blank'),
+    path('buttons.html', buttons.as_view(), name='buttons'),
+    path('flot.html', flot.as_view(), name='flot'),
+    path('forms.html', forms.as_view(), name='forms'),
+    path('grid.html', grid.as_view(), name='grid'),
+    path('morris.html', morris.as_view(), name='morris'),
+    path('notifications.html', notifications.as_view(), name='notifications'),
+    path('panels-wells.html', panels.as_view(), name='panels'),
+    path('tables.html', tables.as_view(), name='tables'),
+    path('typography.html', typography.as_view(), name='typography'),
+    path('forgot-password.html', forgot.as_view(), name='forgot'),
+    path('register/', views.register, name= 'register'),
+    path('login/', LoginView.as_view(template_name="login.html"), name= 'login'),
+    #path('salir/', views.salir, name="salir"),
+    
 ]
