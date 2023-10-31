@@ -12,13 +12,19 @@ from django.db import IntegrityError
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.core.mail import send_mail
+from .models import General
+from django.db.models import Count
 
 
 
 #@login_required
 
 class Home (APIView):
-    template_name="login.html"
+    template_name="Dashboard.html"
+    def get(self, request):
+        return render(request,self.template_name)
+class das (APIView):
+    template_name="Dashboard.html"
     def get(self, request):
         return render(request,self.template_name)
     
@@ -132,7 +138,55 @@ def register(request):
     
 
 
- 
+def chart_view(request):
+    #Precios
+    precios1 = General.objects.filter(precios="$250").count()
+    precios2 = General.objects.filter(precios="$300").count()
+    precios3 = General.objects.filter(precios="$350").count()
+    precios4 = General.objects.filter(precios="$400").count()
+    
+    #Empanadas
+    empanadas1 = General.objects.filter(empanadas="Chistorra").count()
+    empanadas2 = General.objects.filter(empanadas="Queso").count()
+    empanadas3 = General.objects.filter(empanadas="Elote con queso").count()
+    empanadas4 = General.objects.filter(empanadas="Espinaca con queso").count()
+    
+    #Cortes
+    cortes1 = General.objects.filter(cortes="Arrachera").count()
+    cortes2 = General.objects.filter(cortes="Rib eye").count()
+    cortes3 = General.objects.filter(cortes="Churrasco").count()
+    cortes4 = General.objects.filter(cortes="Asado de tira").count()
+    
+    print("cortes1:", cortes1)
+    print("cortes2:", cortes2)
+    print("cortes3:", cortes3)
+    print("cortes4:", cortes4)
+    
+   
+
+    return render(request, 'Dashboard.html', context = {
+        'precios1': precios1,
+        'precios2': precios2,
+        'precios3': precios3,
+        'precios4': precios4,
+        
+        
+        'empanadas1': empanadas1, 
+        'empanadas2': empanadas2, 
+        'empanadas3': empanadas3, 
+        'empanadas4': empanadas4, 
+        
+        
+        'cortes1': cortes1, 
+        'cortes2': cortes2, 
+        'cortes3': cortes3, 
+        'cortes4': cortes4, 
+        
+        
+    }
+    )
+        
+    
         
 
     

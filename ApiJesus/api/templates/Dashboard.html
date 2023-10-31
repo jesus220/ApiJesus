@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <canvas id="myChart" style="position: relative; width:80vw; height:40vh"></canvas>
+    <canvas id="myChart2" style="position: relative; width:40vw; height:20vh"></canvas>
+    <canvas id="myChart3" style="position: relative; width:30vw; height:10vh"></canvas>
+
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["$250", "$300", "$350", "$400"],
+                datasets: [{
+                    label: 'Precios',
+                    data: [{{ precios1 }}, {{ precios2 }}, {{ precios3 }}, {{ precios4 }}],
+                    backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c', '#509c7f'],
+                    borderColor: 'black',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gráfico 2
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ["Chistorra", "Queso", "Elote con Queso", "Elote con Espinacas"],
+                datasets: [{
+                    label: 'Empanadas',
+                    data: [{{ empanadas1 }}, {{ empanadas2 }}, {{ empanadas3 }}, {{ empanadas4 }}],
+                    backgroundColor: ['red', 'blue', 'green', 'orange'],
+                    borderColor: 'black',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gráfico 3
+        const ctx3 = document.getElementById('myChart3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ["Arrachera", "Rib eye", "Churrasco", "Asado de tira"],
+                datasets: [{
+                    label: 'Cortes',
+                    data: [{{ cortes1 }}, {{ cortes2 }}, {{ cortes3 }}, {{ cortes4 }}],
+                    backgroundColor: ['red', 'blue', 'green', 'orange'],
+                    borderColor: 'black',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+    
+</body>
+
+</html>
