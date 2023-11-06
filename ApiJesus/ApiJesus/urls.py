@@ -24,13 +24,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
-    path('',Home.as_view(),name='das'),
+    path('',Home.as_view(),name='index'),
     path('index.html', index.as_view(), name='index'),
     #path('login.html', login.as_view(), name='login'),
     path('icons.html', icono.as_view(), name='ico'),
     path('blank.html', blank.as_view(), name='blank'),
     path('buttons.html', buttons.as_view(), name='buttons'),
-    path('flot.html', flot.as_view(), name='flot'),
     path('forms.html', forms.as_view(), name='forms'),
     path('grid.html', grid.as_view(), name='grid'),
     path('morris.html', morris.as_view(), name='morris'),

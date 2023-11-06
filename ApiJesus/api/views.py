@@ -20,7 +20,7 @@ from django.db.models import Count
 #@login_required
 
 class Home (APIView):
-    template_name="Dashboard.html"
+    template_name="index.html"
     def get(self, request):
         return render(request,self.template_name)
 class das (APIView):
@@ -53,8 +53,8 @@ class buttons (APIView):
     def get(self, request):
         return render(request,self.template_name)
 
-class flot (APIView):
-    template_name="flot.html"
+class chart_view (APIView):
+    template_name="chart.html"
     def get(self, request):
         return render(request,self.template_name)
 
@@ -157,14 +157,57 @@ def chart_view(request):
     cortes3 = General.objects.filter(cortes="Churrasco").count()
     cortes4 = General.objects.filter(cortes="Asado de tira").count()
     
-    print("cortes1:", cortes1)
-    print("cortes2:", cortes2)
-    print("cortes3:", cortes3)
-    print("cortes4:", cortes4)
+    #Guarniciones
+    guarniciones1 = General.objects.filter(guarniciones="Chinchulines").count()
+    guarniciones2 = General.objects.filter(guarniciones="Mollejas").count()
+    guarniciones3 = General.objects.filter(guarniciones="Chistorra").count()
+    guarniciones4 = General.objects.filter(guarniciones="Chorizo argentino").count()
     
-   
+    
+    #Postres
+    postres1 = General.objects.filter(postres="Strudel de manzana").count()
+    postres2 = General.objects.filter(postres="Pastelito de chocolate").count()
+    postres3 = General.objects.filter(postres="Durazno con cremas").count()
+    postres4 = General.objects.filter(postres="Alfajor").count()
+    
+    
+    #Salsa Pastas
+    salsapastas1 = General.objects.filter(salsapastas="salsa boloñesa").count()
+    salsapastas2 = General.objects.filter(salsapastas="Salsa pesto").count()
+    salsapastas3 = General.objects.filter(salsapastas="Salsa burro").count()
+    salsapastas4 = General.objects.filter(salsapastas="Salsa alfredo").count()
+    
+    
+    
+    #Alcohol
+    alcohol1 = General.objects.filter(alcohol="Tequila").count()
+    alcohol2 = General.objects.filter(alcohol="Vodka").count()
+    alcohol3 = General.objects.filter(alcohol="Whisky").count()
+    alcohol4 = General.objects.filter(alcohol="no tomo").count()
+    
+    
+    #Cervezas
+    cervezas1 = General.objects.filter(cervezas="Indio").count()
+    cervezas2 = General.objects.filter(cervezas="Tecate").count()
+    cervezas3 = General.objects.filter(cervezas="Heineken").count()
+    cervezas4 = General.objects.filter(cervezas="No tomo").count()
+    
+    
+    #Refresco
+    refrescos1 = General.objects.filter(refrescos="Pepsi").count()
+    refrescos2 = General.objects.filter(refrescos="Mirinda").count()
+    refrescos3 = General.objects.filter(refrescos="Manzanita").count()
+    refrescos4 = General.objects.filter(refrescos="7up").count()
+    
+    
+     #Cafes
+    cafes1 = General.objects.filter(cafes="Americano").count()
+    cafes2 = General.objects.filter(cafes="Capuchino").count()
+    cafes3 = General.objects.filter(cafes="Expreso").count()
+    cafes4 = General.objects.filter(cafes="No me gusta el cáfe").count()
 
-    return render(request, 'Dashboard.html', context = {
+
+    return render(request, 'chart.html', context = {
         'precios1': precios1,
         'precios2': precios2,
         'precios3': precios3,
@@ -180,14 +223,50 @@ def chart_view(request):
         'cortes1': cortes1, 
         'cortes2': cortes2, 
         'cortes3': cortes3, 
-        'cortes4': cortes4, 
+        'cortes4': cortes4,   
+        
+        'guarniciones1': guarniciones1,
+        'guarniciones2': guarniciones2,
+        'guarniciones3': guarniciones3,
+        'guarniciones4': guarniciones4,
         
         
+        'postres1': postres1,
+        'postres2': postres2,
+        'postres3': postres3,
+        'postres4': postres4,
+        
+        
+        'salsapastas1': salsapastas1,
+        'salsapastas2': salsapastas2,
+        'salsapastas3': salsapastas3,
+        'salsapastas4': salsapastas4,  
+        
+        
+        'alcohol1': alcohol1,
+        'alcohol2': alcohol2,
+        'alcohol3': alcohol3,
+        'alcohol4': alcohol4, 
+        
+        
+        'cervezas1': cervezas1,
+        'cervezas2': cervezas2,
+        'cervezas3': cervezas3,
+        'cervezas4': cervezas4,      
+        
+        
+        'refrescos1': refrescos1,
+        'refrescos2': refrescos2,
+        'refrescos3': refrescos3,
+        'refrescos4': refrescos4,   
+                                        
+        'cafes1': cafes1,
+        'cafes2': cafes2,
+        'cafes3': cafes3,
+        'cafes4': cafes4, 
     }
     )
-        
     
-        
 
     
 #def salir(request):
