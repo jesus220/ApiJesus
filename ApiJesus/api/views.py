@@ -114,8 +114,6 @@ class RegistroUsuarioView(HttpRequest):
             Usuario.save()
             Usuario = Registro_Form()
         return render(request, "login.html", {"form":Usuario, "mensaje":"OK"})
-
-
     def register(request):
         if request.method == 'POST':
             form = registros(request.POST)
