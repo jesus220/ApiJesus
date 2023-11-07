@@ -13,61 +13,6 @@ class RegistrarForm(models.Model):
     class Meta:
         db_table='Registrar'
 
-# class Precios(models.Model):
-#      Id_precio= models.AutoField(primary_key=True)
-#      precios= models.CharField(max_length=100,db_column='Precios')
-#      class Meta:
-#          db_table="Precios"
-        
-# class Empanadas(models.Model):
-#      Id_empanadas= models.AutoField(primary_key=True)
-#      empanadas= models.CharField(max_length=100,db_column='Empanadas')
-#      class Meta:
-#          db_table="Empanadas"
-        
-# class Cortes(models.Model):
-#      Id_cortes= models.AutoField(primary_key=True)
-#      cortes= models.CharField(max_length=100,db_column='Cortes')
-#      class Meta:
-#          db_table="Cortes"
-        
-# class Guarniciones(models.Model):
-#      Id_guarniciones= models.AutoField(primary_key=True)
-#      guarniciones= models.CharField(max_length=100,db_column='Guarniciones')
-#      class Meta:
-#          db_table="Guarniciones"
-        
-
-# class Postres(models.Model):
-#      Id_postres= models.AutoField(primary_key=True)
-#      postres= models.CharField(max_length=100,db_column='Postres')
-#      class Meta:
-#          db_table="Postres"
-        
-
-# class SalsaPastas(models.Model):
-#      Id_salsapastas= models.AutoField(primary_key=True)
-#      salsapastas= models.CharField(max_length=100,db_column='SalsaPasta')
-#      class Meta:
-#          db_table="SalsaPasta"
-        
-# class Cervezas(models.Model):
-#      Id_cervezas = models.AutoField(primary_key=True)
-#      cervezas= models.CharField(max_length=100,db_column='Cervezas')
-#      class Meta:
-#          db_table="Cervezas"
-        
-# class Refrescos(models.Model):
-#      Id_refrescos = models.AutoField(primary_key=True)
-#      refrescos= models.CharField(max_length=100,db_column='Refrescos')
-#      class Meta:
-#          db_table="Refrescos"
-        
-# class Cafes(models.Model):
-#      Id_cafes= models.AutoField(primary_key=True)
-#      cafes= models.CharField(max_length=100,db_column='Cafes')
-#      class Meta:
-#          db_table="Cafes"
         
 class General(models.Model):
     Id_general = models.AutoField(primary_key=True)

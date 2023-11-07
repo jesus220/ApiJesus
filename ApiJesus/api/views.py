@@ -17,7 +17,7 @@ from django.db.models import Count
 
 
 
-#@login_required
+
 
 class Home (APIView):
     template_name="index.html"
@@ -116,25 +116,23 @@ class RegistroUsuarioView(HttpRequest):
         return render(request, "login.html", {"form":Usuario, "mensaje":"OK"})
 
 
-def register(request):
-    if request.method == 'POST':
-        form = registros(request.POST)
-        if form.is_valid():
-            form.save()
-            send_mail(
-            'Bienvenido',    # Asunto del correo
-            'Felicidades te has registrado con exito',    # Cuerpo del correo
-            'jesus480@gmail.com',   # Dirección de correo remitente
-            [request.POST['email']],  # Lista de direcciones de correo de destinatarios
-            fail_silently=False,     # Si se establece en True, los errores en el envío de correo no generarán una excepción
-            )
-            
-            return redirect('login')   
-    else: 
-        form = registros()
-        
-    context = { 'form' : form}
-    return render(request, 'register.html', context) 
+    def register(request):
+        if request.method == 'POST':
+            form = registros(request.POST)
+            if form.is_valid():
+                form.save()
+                send_mail(
+                'Bienvenido',    # Asunto del correo
+                'Felicidades te has registrado con exito',    # Cuerpo del correo
+                'jesus480@gmail.com',   # Dirección de correo remitente
+                [request.POST['email']],  # Lista de direcciones de correo de destinatarios
+                fail_silently=False,     # Si se establece en True, los errores en el envío de correo no generarán una excepción
+                )
+                return redirect('login')   
+        else: 
+            form = registros()
+        context = { 'form' : form}
+        return render(request, 'register.html', context) 
     
 
 
@@ -273,24 +271,3 @@ def chart_view(request):
 #    logout(request)
 #    return redirect('login')
 
-#def iniciar_sesion(request):
-#    if request.method == 'POST':
-#        correo1 = request.POST['username']
-#        contra1 = request.POST['password']
-        
-       
-#        user = authenticate(request, username=correo1, password=contra1)
-       
-#        if user is not None:
-#            login(request, user)
-#            print("acceso ")
-#            return redirect('index.html')
-            
-        
-#        else:
-#             error_message = 'Credenciales incorrectas. Inténtalo de nuevo.'
-#             print("sin acceso")
-#             return render(request, 'login.html', {'error_message': error_message})
-             
-             
-#    return render(request, 'login.html')
