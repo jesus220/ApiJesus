@@ -20,7 +20,7 @@ from django.db.models import Count
 
 
 class Home (APIView):
-    template_name="index.html"
+    template_name="login.html"
     def get(self, request):
         return render(request,self.template_name)
     

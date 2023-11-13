@@ -24,7 +24,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
-    path('',Home.as_view(),name='home'),
+    path('',LoginView.as_view(template_name="login.html"), name= 'login'),
     path('index.html', index.as_view(), name='index'),
     path('tables.html', tables.as_view(), name='tables'),
     path('forgot-password.html', forgot.as_view(), name='forgot'),
