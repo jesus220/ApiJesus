@@ -23,10 +23,6 @@ class Home (APIView):
     template_name="index.html"
     def get(self, request):
         return render(request,self.template_name)
-class das (APIView):
-    template_name="Dashboard.html"
-    def get(self, request):
-        return render(request,self.template_name)
     
 class index (APIView):
     template_name="index.html"
@@ -36,63 +32,18 @@ class index (APIView):
 class login (APIView):
     template_name="login.html"
     def get(self, request):
-        return render(request,self.template_name)
-    
-class icono (APIView):
-    template_name="icons.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
-class blank (APIView):
-    template_name="blank.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
-class buttons (APIView):
-    template_name="buttons.html"
-    def get(self, request):
-        return render(request,self.template_name)
-
+        return render(request,self.template_name)  
+      
 class chart_view (APIView):
     template_name="chart.html"
     def get(self, request):
-        return render(request,self.template_name)
-
-class forms (APIView):
-    template_name="forms.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
-class grid (APIView):
-    template_name="grid.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
-class morris (APIView):
-    template_name="morris.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
-class notifications (APIView):
-    template_name="notifications.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
-class panels (APIView):
-    template_name="panels-wells.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
+        return render(request,self.template_name)   
+      
 class tables (APIView):
     template_name="tables.html"
     def get(self, request):
         return render(request,self.template_name)
-    
-class typography (APIView):
-    template_name="typography.html"
-    def get(self, request):
-        return render(request,self.template_name)
-    
+        
 class forgot (APIView):
     template_name="forgot-password.html"
     def get(self, request):
@@ -172,8 +123,7 @@ def chart_view(request):
     salsapastas2 = General.objects.filter(salsapastas="Salsa pesto").count()
     salsapastas3 = General.objects.filter(salsapastas="Salsa burro").count()
     salsapastas4 = General.objects.filter(salsapastas="Salsa alfredo").count()
-    
-    
+      
     
     #Alcohol
     alcohol1 = General.objects.filter(alcohol="Tequila").count()
