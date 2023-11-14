@@ -20,12 +20,17 @@ from django.db.models import Count
 
 
 class Home (APIView):
-    template_name="login.html"
+    template_name="Menu.html"
     def get(self, request):
         return render(request,self.template_name)
     
 class index (APIView):
     template_name="index.html"
+    def get(self, request):
+        return render(request,self.template_name)
+    
+class menu (APIView):
+    template_name="Menu.html"
     def get(self, request):
         return render(request,self.template_name)
     
