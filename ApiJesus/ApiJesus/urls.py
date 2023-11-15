@@ -20,6 +20,9 @@ from api import views
 from api.views import *
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import path
+
+
 
 
 
@@ -28,10 +31,18 @@ urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('index.html', index.as_view(), name='index'),
     path('tables.html', tables.as_view(), name='tables'),
+    path('Menu2.html', Menu2.as_view(), name='Menu2'),
+    path('Menu.html', Menu.as_view(), name='Menu'),
     path('forgot-password.html', forgot.as_view(), name='forgot'),
     path('register/', RegistroUsuarioView.register, name= 'register'),
     path('login/', LoginView.as_view(template_name="login.html"), name= 'login'),
     path('chart/', views.chart_view, name='chart_view'),
+    path('checkout/<int:product_id>/', views.CheckOut, name='checkout'),
+    path('payment-success/<int:product_id>/', views.PaymentSuccessful, name='payment-success'),
+    path('payment-failed/<int:product_id>/', views.paymentFailed, name='payment-failed'),
+    path('',include('paypal.standard.ipn.urls')),
+    path('', views.ProductView, name='products'),
+ 
     
-    
+
 ]

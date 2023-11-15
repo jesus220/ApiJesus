@@ -28,4 +28,15 @@ class General(models.Model):
     cafes= models.CharField(max_length=100,db_column='Cafes')
     class Meta:
         db_table="General"
+        
+        
+class Product(models.Model):
+    
+    name=models.CharField(max_length=225)
+    description= models.TextField()
+    price= models.IntegerField()
+    image=models.URLField(blank=True, null=True)
+    
+    def __str__(self) :
+        return self.name
     

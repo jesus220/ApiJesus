@@ -35,7 +35,7 @@
             <i class="fas fa-search"></i>
             
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="{% url 'login' %}"><i class="fa fa-home fa-fw"></i> Logueo</a></li>
+                  <a class="btn-design" href="{% url 'login' %}">Logueo</a>
                 </ul>
           </div>
         </div>
@@ -110,13 +110,13 @@
   <div class="container-fluid">
     <div class="row red-comida">
       <div class="col-md-3 comida marbar-trigger">
-        <a class="category" href="#">
-          <img class="category-image" src="../static/img/alcohol.png">
+        <a class="category" href="{% url 'Menu2' %}">
+          <img class="category-image" src="../static/img/carta.jpg">
           <div class="category-content">
             <div class="primer-titulo">
             </div>
             <div class="seg-titulo">
-              <h2>Alcohol</h2>
+              <h2>Carta</h2>
             </div>
           </div>
           <div class="filter"></div>
@@ -124,7 +124,7 @@
       </div>
       <div class="col-md-3 comida platofuerte-trigger">
         <a class="category" href="#">
-          <img class="category-image" src="../static/img/carta.jpg">
+          <img class="category-image" src="../static/img/como-hacer-carne-asada-perfecta.jpg">
           <div class="category-content">
             <div class="primer-titulo">
             </div>

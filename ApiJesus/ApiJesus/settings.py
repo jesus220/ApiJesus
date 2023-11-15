@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,12 @@ DEFAULT_FROM_EMAIL = 'jesus480b@gmail.com'  # Dirección de correo predeterminad
 EMAIL_SUBJECT_PREFIX = 'djangoemail '  # Prefijo para el asunto de los correos electrónicos
 
 LOGIN_REDIRECT_URL="index"
+
+from decouple import config
+
+PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID')
+PAYPAL_SECRET = config('PAYPAL_SECRET')
+PAYPAL_MODE = 'sandbox'  # Cambiar a 'live' en producción
+
+PAYPAL_RECEIVER_EMAIL= 'sb-qoahh28211338@business.example.com'
+PAYPAL_TEST=True

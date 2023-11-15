@@ -14,7 +14,21 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from .models import General
 from django.db.models import Count
+from django.shortcuts import render
+from django.http import HttpResponse
+from paypalrestsdk import Payment
+from django.urls import reverse
+from django.conf import settings
+from django.shortcuts import render
+from django.http import HttpResponse
 
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid
+from django.urls import reverse
+
+from django.shortcuts import render
+from api.models import Product
 
 
 
@@ -26,6 +40,31 @@ class Home (APIView):
     
 class index (APIView):
     template_name="index.html"
+    def get(self, request):
+        return render(request,self.template_name)
+    
+class Menu2 (APIView):
+    template_name="Menu2.html"
+    def get(self, request):
+        return render(request,self.template_name)
+    
+class Menu (APIView):
+    template_name="Menu.html"
+    def get(self, request):
+        return render(request,self.template_name)
+    
+class succes (APIView):
+    template_name="success.html"
+    def get(self, request):
+        return render(request,self.template_name)
+    
+class cancel (APIView):
+    template_name="cancel.html"
+    def get(self, request):
+        return render(request,self.template_name)
+    
+class redirect (APIView):
+    template_name="redirect.html"
     def get(self, request):
         return render(request,self.template_name)
     
@@ -219,7 +258,109 @@ def chart_view(request):
     )
     
 
+def CheckOut(request, product_id):
+
+    product = Product.objects.get(id=product_id)
+
+    host = request.get_host()
+
+    paypal_checkout = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': product.price,
+        'item_name': product.name,
+        'invoice': uuid.uuid4(),
+        'currency_code': 'USD',
+        'notify_url': f"http://{host}{reverse('paypal-ipn')}",
+        'return_url': f"http://{host}{reverse('payment-success', kwargs = {'product_id': product.id})}",
+        'cancel_url': f"http://{host}{reverse('payment-failed', kwargs = {'product_id': product.id})}",
+    }
+
+    paypal_payment = PayPalPaymentsForm(initial=paypal_checkout)
+
+    context = {
+        'product': product,
+        'paypal': paypal_payment
+    }
+
+    return render(request, 'checkout.html', context)
+
+def PaymentSuccessful(request, product_id):
+
+    product = Product.objects.get(id=product_id)
+
+    return render(request, 'payment-success.html', {'product': product})
+
+def paymentFailed(request, product_id):
+
+    product = Product.objects.get(id=product_id)
+
+    return render(request, 'payment-failed.html', {'product': product})
     
+    
+    
+def ProductView(request):
+
+    get_products = Product.objects.all()
+
+    return render(request, 'product.html', {'products': get_products})
+    
+
+    
+
+
+# def process_payment(request):
+#     # Configurar las credenciales de PayPal
+#     paypal_mode = settings.PAYPAL_MODE
+#     paypal_client_id = settings.PAYPAL_CLIENT_ID
+#     paypal_secret = settings.PAYPAL_SECRET
+
+#     # Configurar las credenciales de PayPal
+#     Payment.client_id = paypal_client_id
+#     Payment.client_secret = paypal_secret
+
+#     # Crear el pago
+#     payment = Payment({
+#         "intent": "sale",
+#         "payer": {
+#             "payment_method": "paypal",
+#         },
+#         "redirect_urls": {
+#             "return_url": request.build_absolute_uri(reverse('payment_success')),
+#             "cancel_url": request.build_absolute_uri(reverse('payment_cancel')),
+#         },
+#         "transactions": [{
+#             "item_list": {
+#                 "items": [{
+#                     "name": "Producto de ejemplo",
+#                     "sku": "123",
+#                     "price": "10.00",
+#                     "currency": "USD",
+#                     "quantity": 1,
+#                 }],
+#             },
+#             "amount": {
+#                 "total": "10.00",
+#                 "currency": "USD",
+#             },
+#             "description": "Descripción del pago de ejemplo",
+#         }],
+#     })
+
+#     if payment.create():
+#         # Redireccionar al usuario a la URL de aprobación de PayPal
+#         for link in payment.links:
+#             if link.method == "REDIRECT" and link.rel == "approval_url":
+#                 return render(request, 'payment/redirect.html', {'redirect_url': link.href})
+#     else:
+#         return HttpResponse('Error al crear el pago en PayPal')
+    
+    
+# def payment_success(request):
+#     return render(request, 'payment/success.html')
+
+# def payment_cancel(request):
+#     return render(request, 'payment/cancel.html')
+
 #def salir(request):
 #    logout(request)
 #    return redirect('login')
