@@ -11,8 +11,6 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-        <title>Startmin - Bootstrap Admin Theme</title>
-
         <!-- Bootstrap Core CSS -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -41,18 +39,17 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{% url 'index' %}">Startmin</a>
+                    <a class="navbar-brand" href="{% url 'index' %}">Pibe Argentino</a>
                 </div>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                    <li><a href="{% url 'Menu' %}"><i class="fa fa-home fa-fw"></i> Sitio web</a></li>
                 </ul>
 
                   <!-- Encabezado -->
@@ -96,22 +93,22 @@
                             <a href="{% url 'index' %}"class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graficas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{% url 'chart_view' %}">Flot Charts</a>
+                                    <a href="{% url 'chart_view' %}">Grafica de Preguntas</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{% url 'tables' %}"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="{% url 'tables' %}"><i class="fa fa-table fa-fw"></i> Tablas</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{% url 'login' %}">Login Page</a>
+                                    <a href="{% url 'login' %}">Pagina de Entrada</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

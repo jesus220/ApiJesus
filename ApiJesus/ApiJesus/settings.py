@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -160,3 +161,12 @@ PAYPAL_MODE = 'sandbox'  # Cambiar a 'live' en producción
 
 PAYPAL_RECEIVER_EMAIL= 'sb-qoahh28211338@business.example.com'
 PAYPAL_TEST=True
+
+# Configuración de la base de datos para pruebas
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }

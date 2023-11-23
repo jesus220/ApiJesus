@@ -194,8 +194,8 @@ def chart_view(request):
     cafes1 = General.objects.filter(cafes="Americano").count()
     cafes2 = General.objects.filter(cafes="Capuchino").count()
     cafes3 = General.objects.filter(cafes="Expreso").count()
-    cafes4 = General.objects.filter(cafes="No me gusta el cáfe").count()
-
+    cafes4 = General.objects.filter(cafes="No me gusta el café").count()
+    
 
     return render(request, 'chart.html', context = {
         'precios1': precios1,
